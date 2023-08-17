@@ -53,7 +53,7 @@ const ShopPage = () => {
                     my: 5,
                 }}
             >
-                <Typography variant='h3'>Shop Higgs Gear</Typography>
+                <Typography variant='h3'>Shop Higgs Sports Gear</Typography>
             </Box>
             <ProductList products={products} testId='shop-product-list' />
         </Page>
