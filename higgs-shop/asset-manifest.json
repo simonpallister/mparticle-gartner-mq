@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/simonpallister/mparticle-gartner-mq/static/css/main.a4ef60d7.css",
+    "main.js": "/simonpallister/mparticle-gartner-mq/static/js/main.a8aa230c.js",
+    "static/js/496.1ff16edb.chunk.js": "/simonpallister/mparticle-gartner-mq/static/js/496.1ff16edb.chunk.js",
+    "static/media/lato-all-400-normal.woff": "/simonpallister/mparticle-gartner-mq/static/media/lato-all-400-normal.3dc1eff492ab1f598560.woff",
+    "static/media/Dev-Higgs.svg": "/simonpallister/mparticle-gartner-mq/static/media/Dev-Higgs.88d0d205e8f4e8c586053b5083913917.svg",
+    "static/media/lato-latin-400-normal.woff2": "/simonpallister/mparticle-gartner-mq/static/media/lato-latin-400-normal.be36596da218e1eec01c.woff2",
+    "static/media/higgsmart-logo.svg": "/simonpallister/mparticle-gartner-mq/static/media/higgsmart-logo.00a56e5381cfc80c4ba58631e8e1c16e.svg",
+    "static/media/lato-latin-ext-400-normal.woff2": "/simonpallister/mparticle-gartner-mq/static/media/lato-latin-ext-400-normal.361f3dbb9db6a5980326.woff2",
+    "index.html": "/simonpallister/mparticle-gartner-mq/index.html",
+    "main.a4ef60d7.css.map": "/simonpallister/mparticle-gartner-mq/static/css/main.a4ef60d7.css.map",
+    "main.a8aa230c.js.map": "/simonpallister/mparticle-gartner-mq/static/js/main.a8aa230c.js.map",
+    "496.1ff16edb.chunk.js.map": "/simonpallister/mparticle-gartner-mq/static/js/496.1ff16edb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4ef60d7.css",
+    "static/js/main.a8aa230c.js"
+  ]
+}
