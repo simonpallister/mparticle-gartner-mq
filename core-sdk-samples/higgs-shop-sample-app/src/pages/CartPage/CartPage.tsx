@@ -31,7 +31,7 @@ const CartPage: React.FC = () => {
 
     useEffect(() => {
         // Renders an initial cart view once when the page loads
-        mParticle.logPageView('View My Cart', {
+        mParticle.logPageView('View Cart Page', {
             number_of_products: numberOfProducts,
             total_product_amounts: subTotal,
         });

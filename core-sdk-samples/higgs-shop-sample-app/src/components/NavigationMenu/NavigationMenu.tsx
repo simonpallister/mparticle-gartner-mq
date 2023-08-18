@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
     AppBar,
@@ -11,6 +11,7 @@ import {
     MenuItem,
     IconButton,
     alpha,
+    Button
 } from '@mui/material';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -87,7 +88,17 @@ const NavigationMenu: React.FC = () => {
         },
     };
 
+    // useEffect(() => {
+
+    //     const currentUser = mParticle.Identity.getCurrentUser()
+    //     console.log(currentUser)
+    //     setMpid(currentUser.getMPID())
+    // },[])
+
+
+
     const [drawerState, setDrawerState] = useState(false);
+    const [mpid, setMpid] = useState('')
 
     const trackNavClick = (label: string) => {
         // In cases where you need to track non-standard navigation clicks
@@ -205,6 +216,10 @@ const NavigationMenu: React.FC = () => {
                 <ShoppingCartIcon sx={classes.topnavLinkIcon} />
             </Badge>
         </IconButton>,
+
+        <Button>
+            {mpid}
+        </Button>
     ];
 
     const drawerMenuItems: ReactElement[] = [

@@ -1,9 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import mParticle from '@mparticle/web-sdk';
 import { Page } from '../../layouts/Page';
 import { useUserDetails } from '../../contexts/UserDetails';
 import { AccountDetails, LoginView } from '../../features/AccountDetails';
+import Profile from '../../components/Profile'
 
 // This Page demonstrates mParticle's IDSync functionality.
 // In this example, we are only using 'Login' and 'Logout' Identity Requests. To
@@ -18,6 +19,13 @@ const AccountPage = () => {
     // In our use case, we are simply using a React Context Provider to share logged in
     // and basic user states across the application
     const { user, isLoggedIn, login, logout } = useUserDetails();
+
+    const [mpid, setMpid] = useState("")
+
+    useEffect(() => { 
+        const user = mParticle.Identity.getCurrentUser()
+        setMpid(user.getMPID())
+    }, [])
 
     const handleLogIn = (username: string) => {
         // For our example, we are simulating an external login service
@@ -103,6 +111,9 @@ const AccountPage = () => {
                 }}
             >
                 {renderAccountView()}
+            </Grid>
+            <Grid item>
+                <Profile mpid={mpid}/>
             </Grid>
         </Page>
     );

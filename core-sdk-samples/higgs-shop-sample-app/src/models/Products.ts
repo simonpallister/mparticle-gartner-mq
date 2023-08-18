@@ -8,7 +8,8 @@ const products: Product[] = [
         category: 'Mens',
         brand: 'Nike',
         variants: {
-            size: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
+            color: ['Grey'],
+            size: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
         },
         description:
             'For all-day comfort from the sofa to the streets, check out these mens Tech Fleece Joggers from Nike. ',

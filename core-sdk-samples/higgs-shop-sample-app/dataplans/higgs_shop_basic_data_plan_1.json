@@ -388,7 +388,7 @@
                 "match": {
                     "type": "screen_view",
                     "criteria": {
-                        "screen_name": "View My Cart"
+                        "screen_name": "View Cart Page"
                     }
                 },
                 "validator": {

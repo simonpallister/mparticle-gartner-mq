@@ -37,6 +37,11 @@ const App = () => {
         // Sets to Dev Mode
         isDevelopmentMode: true,
 
+        dataPlan: {
+            planId: 'retail_data_plan',
+            planVersion: 2,
+        },
+
         // logLevel can be 'verbose', 'warning', or 'none' (the default is 'warning').
         // This logLevel provides context into the inner workings of mParticle.
         // It can be updated after MP has been initialized using mParticle.setLogLevel().

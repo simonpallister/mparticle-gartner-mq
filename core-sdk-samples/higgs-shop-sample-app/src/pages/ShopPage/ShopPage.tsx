@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import { useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
 import mParticle from '@mparticle/web-sdk';
 import { Page } from '../../layouts/Page';
 import { ProductList } from '../../features/ProductDetails';
 import products from '../../models/Products';
+import { v4 as uuidv4 } from 'uuid'
 
 const ShopPage = () => {
     // As per React conventions, it is recommended to trigger each mParticle
@@ -46,6 +47,60 @@ const ShopPage = () => {
         mParticle.eCommerce.logImpression(impressions);
     });
 
+    const changeConsent = (consent: boolean, purpose: string,) => {
+        const user = mParticle.Identity.getCurrentUser()
+        const consentObject = mParticle.Consent.createGDPRConsent(
+            consent,
+            Date.now(),
+            purpose,
+            "Head Office",
+            `DAS:${mParticle.getDeviceId()}`
+
+        )
+        const consentState = mParticle.Consent.createConsentState()
+        consentState.addGDPRConsentState(purpose, consentObject)
+        user.setConsentState(consentState)
+        mParticle.logEvent("Consent Change", mParticle.EventType.UserPreference,
+            {
+                Consent: consent,
+                Purpose: purpose,
+                Location: "Head Office",
+                Device: `DAS:${mParticle.getDeviceId()}`
+            }
+        )
+    }
+
+    const dsr_request = async () => {
+        const current_user =  mParticle.Identity.getCurrentUser()
+        const body = {
+            "regulation": "gdpr",
+            "subject_request_id": uuidv4(),
+            "subject_request_type": "erasure",
+            "submitted_time": new Date().toISOString(),
+            "subject_identities": {
+              "email": {
+                "value": current_user.getUserIdentities().userIdentities.email,
+                "encoding": "raw"
+              }
+            },
+            "api_version": "3.0",
+        }
+        
+        const response = await fetch("https://opendsr.mparticle.com/v3/requests/",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Basic " + process.env.REACT_APP_MPARTICLE_BASIC_AUTH
+                },
+                body:JSON.stringify(body)
+            }
+        )
+
+        console.log(response)
+    }
+
+
     return (
         <Page>
             <Box
@@ -56,6 +111,61 @@ const ShopPage = () => {
                 <Typography variant='h3'>Shop Higgs Sports Gear</Typography>
             </Box>
             <ProductList products={products} testId='shop-product-list' />
+            <Grid container spacing={2} justifyContent="center" sx={{
+                    my: 5,
+                }}>
+
+            <Grid item>
+                <Button
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    onClick={()=> changeConsent(true, "marketing")}
+                    >
+                    Allow Marketing
+                    </Button>
+                    </Grid>
+                    <Grid item>
+                <Button
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    onClick={()=> changeConsent(false, "marketing")}
+                    >
+                    Decline Marketing
+                    </Button>
+                    </Grid>
+                <Grid item>
+                    <Button
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    onClick={()=> changeConsent(true, "analytics")}
+                    >
+                    Allow Analytics
+                    </Button>
+                </Grid>
+                <Grid item>
+                <Button
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    onClick={()=> changeConsent(false, "analytics")}
+                    >
+                    Decline Analytics
+                    </Button>
+                    </Grid>
+                    <Grid item>
+                <Button
+                    variant='contained'
+                    fullWidth
+                    size='large'
+                    onClick={dsr_request}
+                    >
+                    Delete My Data
+                    </Button>
+                    </Grid>
+            </Grid>
         </Page>
     );
 };

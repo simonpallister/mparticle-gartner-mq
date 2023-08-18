@@ -15,6 +15,7 @@ interface UserDetailsStore {
     logout(): void;
 }
 
+
 // use type assertion for initial empty state
 const UserDetails = createContext({} as UserDetailsStore);
 
@@ -30,29 +31,30 @@ export function useUserDetails() {
     return context;
 }
 
+
 const UserDetailsProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | null>(null); 
     const [loggedIn, setLoggedIn] = useState(false);
 
     const value = useMemo(() => {
         const login = (username: string) => {
-            // In a real-world application, the user record would be pulled
-            // from a database. In our Sample App, we are simply hard-coding
-            // user details for demonstration purposes
-            const myUser: User = {
+            
+            // const loginUser:User = getUser(username)
+            const loginUser: User = {
                 username,
-                email: 'higgs@mparticle.com',
-                customerid: 'higgs123',
-            };
+                email: process.env.REACT_APP_MPARTICLE_EMAIL as string,
+                customerid: process.env.REACT_APP_MPARTICLE_CUSTOMERID as string
+            };  
 
-            setUser(myUser);
+            setUser(loginUser);
             setLoggedIn(true);
 
-            return myUser;
+            return loginUser
+
         };
 
         const logout = () => {
-            setUser(null);
+            setUser(null); 
             setLoggedIn(false);
         };
 
