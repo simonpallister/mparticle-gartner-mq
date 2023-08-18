@@ -73,29 +73,20 @@ const ShopPage = () => {
     const dsr_request = async () => {
         const current_user =  mParticle.Identity.getCurrentUser()
         const body = {
-            "regulation": "gdpr",
-            "subject_request_id": uuidv4(),
-            "subject_request_type": "erasure",
-            "submitted_time": new Date().toISOString(),
-            "subject_identities": {
-              "email": {
-                "value": current_user.getUserIdentities().userIdentities.email,
-                "encoding": "raw"
-              }
-            },
-            "api_version": "3.0",
+            "email": current_user.getUserIdentities().userIdentities.email
         }
         
-        const response = await fetch("https://opendsr.mparticle.com/v3/requests/",
+        const response = await fetch("https://kwrdr8v65m.execute-api.us-east-1.amazonaws.com/opendsr",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Basic " + process.env.REACT_APP_MPARTICLE_BASIC_AUTH
                 },
                 body:JSON.stringify(body)
             }
         )
+
+        alert("Open DSR Request Successfully Submitted")
 
         console.log(response)
     }
