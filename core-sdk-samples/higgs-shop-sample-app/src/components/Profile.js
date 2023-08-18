@@ -45,7 +45,7 @@ const Profile = ({ mpid }) => {
                 {userProfile?.user_attributes['last Product Viewed']}
             </p>
             <p>
-                Last Product Viewed:{' '}
+                Favourite Brand:{' '}
                 {userProfile?.user_attributes['favourite Brand']}
             </p>
             <p>
