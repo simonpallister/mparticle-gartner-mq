@@ -3,7 +3,7 @@ import mParticle from '@mparticle/web-sdk';
 
 const getProfile = async (mpid) => {
     const response = await fetch(
-        `https://z4yqkonnm9.execute-api.us-east-1.amazonaws.com/profile?vertical=retail&mpid=${mpid}&fields=device_identities,user_identities,user_attributes,audience_memberships,attribution`,
+        `https://kwrdr8v65m.execute-api.us-east-1.amazonaws.com/profile?vertical=retail&mpid=${mpid}&fields=device_identities,user_identities,user_attributes,audience_memberships,attribution`,
         {},
     );
     const data = await response.json();
